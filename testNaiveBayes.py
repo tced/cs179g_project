@@ -132,5 +132,5 @@ if __name__ == "__main__":
 	# Write dataframe with results to json file
 	resultsDF.coalesce(1).write.format('json').save('/project/output')
 	print("File was written")
-	
+ 	#adding comment to test git	
 	spark.stop()
