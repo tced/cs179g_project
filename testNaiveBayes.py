@@ -1,26 +1,21 @@
 from __future__ import print_function
+
 import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
+import re
+import pyspark.sql.functions as F
+
 from pyspark.sql import SparkSession
 from pyspark.sql import SQLContext
-from pyspark.sql import *
-import re
+from pyspark.sql.functions import lower, col, udf
+from pyspark.sql.types import *
+
 from pyspark.ml.feature import HashingTF, IDF, Tokenizer
-#from pyspark.ml.feature import StopWordsRemover
 from pyspark.ml.feature import NGram
 from pyspark.ml.feature import Tokenizer, RegexTokenizer
-from pyspark.sql.functions import col, udf
-from pyspark.sql.types import *
-import pyspark.sql.functions as F
+
 from pyspark.mllib.classification import NaiveBayes, NaiveBayesModel
-from pyspark.mllib.util import MLUtils
-from pyspark.mllib.linalg import SparseVector
-from pyspark.ml.linalg import Vector as MLVector, Vectors as MLVectors
 from pyspark.mllib.linalg import Vector as MLLibVector, Vectors as MLLibVectors
 from pyspark.mllib.regression import  LabeledPoint
-import json
-from pyspark.sql.functions import lower, col
 #****************************************************************
 #	User Defined Functions
 
@@ -126,11 +121,14 @@ if __name__ == "__main__":
 	predictionWithIndex.show(9)
 	# Join dataframes to obtain results as -> [business_id, review_id, text, index, prediction]
 	print("Joining tables")
-	resultsDF = resultsDF.join(predictionWithIndex, resultsDF.index == predictionWithIndex.number, 'inner').drop("number")#.sort(resultsDF.index, asc = True)
+
+	# *****************ERROR HAPPENS HERE**************
+	resultsDF = resultsDF.join(predictionWithIndex, resultsDF.index == predictionWithIndex.number, 'inner').drop("number").sort(resultsDF.index, asc = True)
+
 	print("Joined tables")
 	resultsDF.show(8)
 	# Write dataframe with results to json file
 	resultsDF.coalesce(1).write.format('json').save('/project/output')
 	print("File was written")
- 	#adding comment to test git	
+	
 	spark.stop()
