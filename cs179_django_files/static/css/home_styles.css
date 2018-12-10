@@ -1,0 +1,29 @@
+h1 {
+	color: black;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+h2 {
+	font-size: 20px;
+	color: black;
+}
+
+html {
+	overflow-y: scroll;
+}
+body {
+	background-image: url('../img/blue-white-pattern-background.jpg'); 
+	height: 100vh;
+  	overflow: scroll;
+  	background-size: cover;
+  	background-position: center center; 
+  	background-repeat: repeat-x;
+  	font-family: monoscape;
+}
+
+#home-content{
+	text-align: center;
+	padding-top: 20%;
+}
+

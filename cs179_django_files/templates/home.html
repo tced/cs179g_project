@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block custom_css %}
+<link rel='stylesheet' type = 'text/css' href = "{% static 'css/home_styles.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class ="container"> 
+	<div class = "row"> 
+		<div class ="col">
+			<div id="home-content"> 
+				<h1>Welcome to our Senior Design Project </h1>
+				<h3> Team members: Andrea-Cruz Castillo, Tiffany Cedeno, Patrick Ngyuen </h3>
+				<h2> Click Service to start </h2>
+
+				<hr> 
+			</div>
+		</div> 
+	</div>
+
+</div>
+{% endblock %}
