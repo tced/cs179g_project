@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% block content %}
+<div class ="container">
+
+	<h1><center> Enter your business name below </h1></center>
+	<u1>
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <div class="container">
+    <br/>
+    <div class="row justify-content-center">
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Search" name ='search' value = "{{search_term}}">
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
+                        </div>
+                        <!--end of col-->
+                    </div>
+</div>
+  <!-- NEED THIS TO SEARCH FOR RESULTS, shows business --> 
+
+  {% for i in business_list %} 
+    <h2> Name of Business: {{ i.name }}</h2>
+    <h2> Business ID: {{i.bid}}</h2>
+    <h2> Average star ratings: {{i.avgstars}} </h2>  
+  {% endfor %}
+
+  {%for i in records%} 
+      <h2> {{i}} </h2>
+  {% endfor %}
+
+  <h2> Customer Reviews:</h2> 
+  {% for i in review_list %}
+     <h2> Prediction: {{i.prediction}} Review: {{ i.text }}  Customer: {{i.userID }} </h2> 
+  {% endfor %}
+
+
+
+  <!---{%for i in review_and_user%}
+    <h2> Outputting with conjoined list: {{ i.review }} {{i.username}}</h2> 
+  {% endfor %} --> 
+  
+	</u1>
+</div>
+{% endblock %}
